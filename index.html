@@ -96,6 +96,17 @@
                 opacity: 0;
             }
         }
+        @keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(8);
+        opacity: 0;
+    }
+}
+
 
     </style>
 </head>
@@ -114,9 +125,12 @@
     document.getElementById("name").innerText = "Pranamyaaaaa";
 
     function yesClicked() {
-        document.querySelector(".container").innerHTML =
-            "<h1 class='message'>Yayyy My Chinni Bangaariii 👩‍❤️‍💋‍👩 I love you sooo muchhhh 💋</h1>";
-    }
+    document.querySelector(".container").innerHTML =
+        "<h1 class='message'>Yayyy My Chinni Bangaariii 👩‍❤️‍💋‍👩 I love you sooo muchhhh 💋</h1>";
+
+    startFireworks();
+}
+
 
     function moveButton() {
         let btn = document.getElementById("noBtn");
@@ -141,7 +155,44 @@
     }
 
     setInterval(createHeart, 300);
+
+    // FIREWORKS EFFECT 🎆
+function startFireworks() {
+    for (let i = 0; i < 30; i++) {
+        createFirework();
+    }
+}
+
+function createFirework() {
+    const firework = document.createElement("div");
+    firework.style.position = "absolute";
+    firework.style.left = Math.random() * window.innerWidth + "px";
+    firework.style.top = Math.random() * window.innerHeight + "px";
+    firework.style.width = "10px";
+    firework.style.height = "10px";
+    firework.style.borderRadius = "50%";
+    firework.style.background = randomColor();
+    firework.style.boxShadow = `
+        0 0 20px ${firework.style.background},
+        0 0 40px ${firework.style.background},
+        0 0 60px ${firework.style.background}
+    `;
+    firework.style.animation = "explode 1s ease-out forwards";
+
+    document.body.appendChild(firework);
+
+    setTimeout(() => {
+        firework.remove();
+    }, 1000);
+}
+
+function randomColor() {
+    const colors = ["#ff4d6d", "#ffcc00", "#00f2ff", "#ffffff", "#ff00ff"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
 </script>
 
 </body>
 </html>
+
