@@ -158,10 +158,18 @@
 
     // FIREWORKS EFFECT 🎆
 function startFireworks() {
-    for (let i = 0; i < 30; i++) {
-        createFirework();
-    }
+    let count = 0;
+    let interval = setInterval(() => {
+        for (let i = 0; i < 10; i++) {
+            createFirework();
+        }
+        count++;
+        if (count > 15) {
+            clearInterval(interval);
+        }
+    }, 200);
 }
+
 
 function createFirework() {
     const firework = document.createElement("div");
@@ -195,4 +203,5 @@ function randomColor() {
 
 </body>
 </html>
+
 
