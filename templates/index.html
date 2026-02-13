@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Be My Valentine 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffdde1, #ff758c);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card */
+        .container {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .yes-btn {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            background: #ff1a4d;
+        }
+
+        .no-btn {
+            background: #333;
+            color: white;
+            position: relative;
+        }
+
+        .message {
+            font-size: 35px;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 id="question">Will you be my Valentine, <span id="name">Princess</span>?💌</h1>
+
+    <button class="yes-btn" onclick="yesClicked()">Yes🖤</button>
+    <button class="no-btn" id="noBtn" onmouseover="moveButton()">No 💔</button>
+</div>
+
+<script>
+    // CHANGE NAME HERE 💌
+    document.getElementById("name").innerText = "Pranamyaaaaa";
+
+    function yesClicked() {
+        document.querySelector(".container").innerHTML =
+            "<h1 class='message'>Yayyy My Chinni Bangaariii 👩‍❤️‍💋‍👩 I love you sooo muchhhh 💋</h1>";
+    }
+
+    function moveButton() {
+        let btn = document.getElementById("noBtn");
+        let x = Math.random() * 300 - 150;
+        let y = Math.random() * 200 - 100;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // Create Floating Hearts
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "🌹❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
